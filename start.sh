@@ -15,6 +15,7 @@ mkdir -p /root/.vnc /var/log/app
 # Start Xvfb
 Xvfb $DISPLAY -screen 0 $SCREEN_GEOM -nolisten tcp &
 XVFB_PID=$!
+sleep 1
 
 # Start a minimal WM (fluxbox)
 fluxbox -display $DISPLAY >/var/log/app/fluxbox.log 2>&1 &
