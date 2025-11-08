@@ -1,0 +1,34 @@
+{
+  "M1": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "M3": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "M5": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "M15": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "H1": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "H4": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "H6": {
+    "period": 20,
+    "stddev": 2.0
+  },
+  "D1": {
+    "period": 20,
+    "stddev": 2.0
+  }
+}

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: criminal-signal-flztrgt
+    env: docker
+    plan: free
+    autoDeploy: false
+    region: frankfurt
+    envVars:
+      - key: SCREEN_GEOM
+        value: 1366x768x24
+    healthCheckPath: /
