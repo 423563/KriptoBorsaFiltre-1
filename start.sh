@@ -23,15 +23,12 @@ fluxbox -display $DISPLAY >/var/log/app/fluxbox.log 2>&1 &
 x11vnc -display $DISPLAY -forever -shared -nopw -rfbport $VNC_PORT \
   >/var/log/app/x11vnc.log 2>&1 &
 
-# Start websockify/noVNC
-if command -v websockify >/dev/null 2>&1; then
-  websockify --web=/usr/share/novnc/ $NOVNC_PORT localhost:$VNC_PORT \
-    >/var/log/app/websockify.log 2>&1 &
-else
-  # Fallback to novnc_proxy helper
-  /usr/share/novnc/utils/novnc_proxy --vnc localhost:$VNC_PORT --listen $NOVNC_PORT \
-    >/var/log/app/websockify.log 2>&1 &
-fi
+# Start noVNC with novnc_proxy (exposes WS at /websockify)
+/usr/share/novnc/utils/novnc_proxy \
+  --vnc localhost:$VNC_PORT \
+  --listen 0.0.0.0:$NOVNC_PORT \
+  --web /usr/share/novnc/ \
+  >/var/log/app/websockify.log 2>&1 &
 
 # Launch the app
 export DISPLAY=$DISPLAY
