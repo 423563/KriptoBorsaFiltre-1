@@ -19,6 +19,7 @@ sleep 1
 
 # Start a minimal WM (fluxbox)
 fluxbox -display $DISPLAY >/var/log/app/fluxbox.log 2>&1 &
+sleep 0.5
 
 # Start x11vnc
 x11vnc -display $DISPLAY -forever -shared -nopw -rfbport $VNC_PORT \
@@ -34,7 +35,7 @@ x11vnc -display $DISPLAY -forever -shared -nopw -rfbport $VNC_PORT \
 # Launch the app
 export DISPLAY=$DISPLAY
 trap 'kill $XVFB_PID || true; exit 0' SIGTERM SIGINT
-python -u /app/main.py >/var/log/app/app.log 2>&1
+exec python -u /app/main.py
 
 # Cleanup
 kill $XVFB_PID || true
